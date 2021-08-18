@@ -40,12 +40,12 @@ function reverseSentence(a){
 
 //kata3
 function testMinimumValue1() {
-    let result = reverseString([2,3,5,9]);
+    let result = minimumValue([2,3,5,9]);
     let expected = 2;
     console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
 }
 function testMinimumValue2() {
-    let result = reverseString([8,3,7,11]);
+    let result = minimumValue([8,3,7,11]);
     let expected = 3;
     console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
 }
@@ -55,27 +55,27 @@ function minimumValue(a){
 
 //kata4
 function testMaximumValue1() {
-    let result = reverseString([2,3,5,9]);
+    let result = maximumValue([2,3,5,9]);
     let expected = 9;
     console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
 }
 function testMaximumValue2() {
-    let result = reverseString([8,3,7,11]);
+    let result = maximumValue([8,3,7,11]);
     let expected = 11;
     console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
 }
-function minimumValue(a){
+function maximumValue(a){
     return a.sort((a,b)=>b-a)[0]
 }
 
 //kata5
 function testCalculateRemainder1() {
-    let result = reverseString(5,2);
+    let result = calculateRemainder(5,2);
     let expected = 1;
     console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
 }
 function testCalculateRemainder2() {
-    let result = reverseString('a',2);
+    let result = calculateRemainder('a',2);
     let expected = NaN;
     console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
 }
@@ -96,13 +96,14 @@ function testDistinctValues2() {
 }
 function distinctValues(a){
     let output = []
-    a = a.replace(/ /g, '')
+    a = a.split(' ')
     for (let i=0;i<a.length;i++){
         if (output.includes(a[i])===false){
             output.push(a[i])
         }
     }
-    return output.join(' ')
+    output = output.sort((a,b)=>a-b).join(' ')
+    return output
 }
 
 //katas7
@@ -119,14 +120,14 @@ function testCountValues2() {
 function countValues(a){
     let output = []
     let element = []
-    a = a.replace(/ /g, '')
+    a = a.split(' ')
     for (let i=0;i<a.length;i++){
         if (element.includes(a[i])===false){
             element.push(a[i])
         }
     }
     for (let i=0;i<element.length;i++){
-        let count = a.split('').filter((a)=>a===element[i]).length;
+        let count = a.filter((a)=>a===element[i]).length;
         output.push(element[i]+`(${count})`)
     }
     return output.join(' ')
